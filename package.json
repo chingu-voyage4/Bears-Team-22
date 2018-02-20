@@ -1,0 +1,36 @@
+{
+  "name": "jobbaticalclone",
+  "version": "1.0.0",
+  "description": "This is a chingu-voyage project we select the jobbatical wep page to clone it and have the experience of building a full stack project",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-all": "gulp install_frontend",
+    "run-serve": "cd backend && yarn start",
+    "run-frontend": "cd frontend && yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyage4/Bears-Team-22"
+  },
+  "engines": {
+    "node": "9.3.0",
+    "npm": "5.6.0"
+  },
+  "keywords": [
+    "chingu-voyage",
+    "fullstack",
+    "jobbatical"
+  ],
+  "author": "team-22",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelfeliz/Bears-Team-22/issues"
+  },
+  "homepage": "https://github.com/angelfeliz/Bears-Team-22#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-shell": "^0.6.5"
+  }
+}
