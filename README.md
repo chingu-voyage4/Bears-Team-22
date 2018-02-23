@@ -8,11 +8,12 @@ In this voyage we are cloning the [JobBatical](https://jobbatical.com/) web site
     > git clone https://github.com/YOUR_USERNAME/YOUR_FORK_NAME.git
     > cd YOUR_FORK_NAME
     > yarn install-all
-    > yarn start```
+    > yarn start
+    ```
     
 The project is divede in two a front-end and a back-end. 
 
-The project can run separately in diffrent terminals but is you run from the root gulp.js will take care of that.
+The project can run separately in diffrent terminals but if you run from the root, gulp.js will take care of that.
 
 Contribution step:
 
@@ -21,10 +22,10 @@ Contribution step:
 3. **DO NOT COMMIT CHANGES THAT BREAKS THE RENDER**
 4. Open a new issue for a new feature
 6. Keep you commit messages meaningful
-7. (Squash your commit)[https://forum.freecodecamp.org/t/how-to-squash-multiple-commits-into-one-with-git/13231] if there are more than one.
+7. [Squash your commit](https://forum.freecodecamp.org/t/how-to-squash-multiple-commits-into-one-with-git/13231) if there are more than one.
 8. Running tests before commit is recommended
 9. Do not commit package-lock.json as we are using yarn.lock
-10.Keep you environment vars in .env file. If you add any .env file make sure to add the entities in a .env.sample file for the repo.
+10. Keep you environment vars in .env file. If you add any .env file make sure to add the entities in a .env.sample file for the repo.
 11. Keep your fork up to date as to avoid merge conflicts
 Happy coding!!
 
