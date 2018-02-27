@@ -82,6 +82,9 @@ const EmployeeSchema = new mongoose.Schema({
   applications: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Jobs"
-  }]
+  }],
+
+  loginToken: String,
+  loginTokenValid: { type: Boolean, default: false }
   
 })
