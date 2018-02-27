@@ -28,15 +28,15 @@ gulp.task('client', shell.task('cd frontend && yarn start')
 )
 
 gulp.task('install_backend', function(cb) {
-    exec('cd backend && yarn install', function(err, stdout, sterr) {
+    exec('cd backend && yarn install', function(err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
     })
 })
 
-gulp.task('install_frontend',['install backend'], function(cb) {
-    exec('cd frontend && yarn install', function(err,stdout, sterr) {
+gulp.task('install_frontend',['install_backend'], function(cb) {
+    exec('cd frontend && yarn install', function(err,stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
     })
