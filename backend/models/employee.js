@@ -46,5 +46,31 @@ const EmployeeSchema = new mongoose.Schema({
     to: Date,
     current: Boolean,
     additionalInfo: String
-  }]
+  }],
+
+
+  preferences: {
+    personal: {
+      locations: [String],
+      jobs: [String],
+      citizenship: [String],
+      lookingFor: String
+    },
+    dob: Date,
+    gender: String,
+    social: {
+      facebook: { type: Boolean, default: false },
+      google: { type: Boolean, default: false },
+      linkedin: { type: Boolean, default: false }
+    },
+    notifications: {
+      lookingForJob: { type: Boolean, default: true },
+      subscribeNewsJob: { type: Boolean, default: true },
+      subscribeNewsBusiness: { type: Boolean, default: false },
+      hideProfile: { type: Boolean, default: false }
+    }
+  },
+
+  isDeactivated: { type: Boolean, default: false }
+  
 })
