@@ -71,6 +71,17 @@ const EmployeeSchema = new mongoose.Schema({
     }
   },
 
-  isDeactivated: { type: Boolean, default: false }
+  isDeactivated: { type: Boolean, default: false },
+
+
+  savedJobs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Jobs"
+  }],
+
+  applications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Jobs"
+  }]
   
 })
