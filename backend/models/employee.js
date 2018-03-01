@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const EmployeeSchema = new mongoose.Schema({
   email: { type: String, unique: true }, 
@@ -88,3 +89,7 @@ const EmployeeSchema = new mongoose.Schema({
   loginTokenValid: { type: Boolean, default: false }
   
 })
+
+EmployeeSchema.plugin(passportLocalMongoose)
+
+module.exports = mongoose.model('Employee', EmployeeSchema)
