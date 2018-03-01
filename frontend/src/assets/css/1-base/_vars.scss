@@ -1,0 +1,40 @@
+/*  dimensions */
+ $mobile: 576px;
+ $tablet: 768px;
+ $desktop: 992px;
+ $large-desktop: 1200px;
+
+$primary-color: #2AB9AA;
+$contrast-color: #555;
+$dark-color: #405677;
+$darker-color: #273547;
+
+:root {
+    /* colors */
+    --primary-color: #2AB9AA;
+    --contrast-color: #555;
+    --dark-color: #405677;
+    --darker-color: #273547;
+    
+    /*  dimensions */
+    --mobile: 576px;
+    --tablet: 768px;
+    --desktop: 992px;
+    --large-desktop: 1200px;
+  }
+
+
+// mixins
+@mixin makeFlex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align
+}
+
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+  
