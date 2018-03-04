@@ -1,0 +1,142 @@
+@import 'assets/css/1-base/_base'
+
+.cover
+	background: transparentize($dark-color, .3)
+	height: 570px
+	max-height: 50%
+	position: relative
+	width: 100%
+	overflow: hidden
+	color: white
+	+makeFlex(column, flex-start, center)
+	padding: 0px 20px
+	padding-top: 200px
+
+	&::after
+		content: '';
+		position: absolute;
+		background: #333;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-image: url('./../../assets/img/home-cover-background.jpg');
+		background-size: cover;
+		z-index: -1;
+
+	&__leftside,
+	&__rightside
+		+makeFlex(row, center, center)
+		width: 100%
+
+	&__title
+		font-size: 28px
+		width: 100%
+	
+	&__button
+		+makeFlex(row, center, center)
+		+size(150px, 52px)
+		background: var(--primary-color)
+		border-radius: 4px
+		color: white
+		margin-top: 10px
+		text-decoration: none
+		transition: all ease-in .3s
+
+		&:hover
+			background: var(--dark-color)
+			color: var(--primary-color)
+			text-decoration: none
+	&.video
+		background: transparentize($dark-color, .3)
+		&::after
+			background-image: url('./../../assets/img/home-video-background.jpg');
+
+.section-part
+	padding: 20px 20px
+	width: 100%
+	overflow: hidden	
+
+	&__title
+		color: var(--dark-color)
+		font-weight: bolder
+		margin-bottom: 20px
+
+		&.white
+			color: white !important
+
+.row-container
+	+makeFlex(row, center, center)
+	flex-wrap: wrap
+	margin-bottom: 50px
+	width: 100%
+
+// quotes 
+
+.quote
+	+makeFlex(column, center, center)
+	background: linear-gradient(45deg, darken(#90f7ec, 35%), darken(#32ccbc, 5%))
+	color: white
+
+.home-quote
+	padding: 10px 15px
+	width: 100%
+
+	&__image
+		+size(70px, 70px)
+		background: var(--dark-color)
+		border-radius: 50%
+		image-rendering: 
+		margin-bottom: 20px
+
+	&__title
+		margin-bottom: 15px
+		opacity: .8
+
+// home-press-item
+.home-press-item
+	background: var(--dark-color)
+	color: white
+	border: 1px solid $primary-color
+	border-radius: 4px
+	margin: 25px 10px
+	padding: 20px 15px
+	width: 350px
+
+	&__title
+		margin-bottom: 15px
+		
+@media (min-width: $desktop)
+	.cover
+		+makeFlex(column, center, center)
+		padding: 0 50px
+
+		&__leftside,
+		&__rightside
+			width: 50%
+					
+		&__title
+			font-size: 38px
+			width: 100%
+
+		&__button
+			+size(300px, 52px)
+	
+	.section-part
+		padding: 30px 50px
+
+		&__title
+			margin-bottom: 50px
+			font-size: xx-large
+	
+	.row-container
+		margin-bottom: 100px
+
+	// quote
+	.quote
+		color: white
+
+	.home-quote
+		padding: 10px 25px
+		width: 50%
+	

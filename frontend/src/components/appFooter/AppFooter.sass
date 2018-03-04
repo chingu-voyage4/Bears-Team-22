@@ -1,0 +1,50 @@
+@import 'assets/css/1-base/_base'
+
+footer
+    background: var(--darker-color)
+    padding: 20px
+    padding-bottom: 0
+
+    .row-container
+        margin-bottom: 0
+        align-items: flex-start
+        justify-content: space-between
+        text-align: left
+    
+    .home-press-item
+        border: 0
+        background: transparent
+    
+    [class*=title]
+        border-bottom: 1px solid transparentize(white, .9)
+
+.footer-menu
+    margin-top: 10px
+    padding-left: 0
+
+    &__link
+        list-style: none
+        text-align: left
+
+        a
+            color: white
+
+
+.footer__base
+    +makeFlex(column, space-between, center)
+    box-sizing: border-box
+    border-top: 1px solid var(--primary-color)
+    color: var(--primary-color)
+    min-height: 40px
+    padding: 15px
+    width: 100%
+
+    span 
+        background: crimsons
+
+@media (min-width: $desktop)
+    footer
+        padding: 20px 50px
+        padding-bottom: 0
+    .footer__base
+        flex-direction: row
