@@ -25,16 +25,6 @@ Contribution step:
 7. [Squash your commit](https://forum.freecodecamp.org/t/how-to-squash-multiple-commits-into-one-with-git/13231) if there are more than one.
 8. Running tests before commit is recommended
 9. Do not commit package-lock.json as we are using yarn.lock
-10. Keep you environment vars in .env file. If you add any .env file make sure to add the entities in a .env.sample file for the repo.
+10. Keep you environment vars in config.js file. If you add any config.js variable make sure to add it config.sample.js file for the references.
 11. Keep your fork up to date as to avoid merge conflicts
 Happy coding!!
-
-# Keeping your fork up to date
-1.Add the main repository as the upstream remote to your local repository
-```> git remote add upstream https://github.com/chingu-voyage4/Bears-Team-22.git```
-
-2.Simply pull the changes to your branch
-```> git pull upstream master```
-
-3.Push your repository to your remote
-```> git push origin master```
