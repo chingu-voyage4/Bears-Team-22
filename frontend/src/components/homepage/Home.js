@@ -7,6 +7,7 @@ import JobListItem from './../jobListItem/JobListItem';
 import './Home.css';
 
 const Home = props => {
+
     return(
         <div className="home">
             <HomeCover/>

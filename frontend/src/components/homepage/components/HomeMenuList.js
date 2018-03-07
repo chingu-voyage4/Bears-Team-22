@@ -25,5 +25,5 @@ const subTitle = props => {
 }
 
 const getLinks = links => {
-    return links.map((link) => (<li className="footer-menu__link"><a href={link.href}>{link.title}</a></li>))
+    return links.map((link) => (<li key={link.title} className="footer-menu__link"><a href={link.href}>{link.title}</a></li>))
 }

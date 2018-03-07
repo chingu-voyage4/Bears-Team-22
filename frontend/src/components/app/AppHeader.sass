@@ -128,10 +128,11 @@
 @media (min-width: $desktop)
 	.app-header
 		padding: 0 50px
-		position: fixed
-		background: transparent 
-		box-shadow: none
-		border-bottom: 0
+		
+		&.home
+			box-shadow: none
+			background: transparent 
+			border-bottom: 0
 		
 		&.scrolled
 			background: var(--dark-color)
