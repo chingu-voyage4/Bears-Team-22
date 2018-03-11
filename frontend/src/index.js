@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import './assets/css/index.css';
@@ -11,10 +12,18 @@ import client from './graphql/clientGraphql';
 
 
 
-const startPoint =   (<ApolloProvider client={client}>
-                         <App />
-                    </ApolloProvider>)
+// const startPoint =   (<ApolloProvider client={client}>
+//                          <App />
+//                     </ApolloProvider>)
 
+
+ReactDOM.render((
+    <BrowserRouter>
+       <ApolloProvider client={client}>
+           <App />
+        </ApolloProvider
+    </BrowserRouter>
+    ), document.getElementById('root'));
 
 ReactDOM.render(startPoint, document.getElementById('root'));
 registerServiceWorker();
