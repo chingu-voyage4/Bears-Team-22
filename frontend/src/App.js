@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+
 import { Route , withRouter} from 'react-router-dom';
+
+
+import JobAdd from './components/jobs/JobAdd'
+import './assets/css/App.css';
+
+
 import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import Home from './components/homepage/Home';
@@ -7,6 +14,7 @@ import Jobs from './components/jobs/Jobs';
 import './assets/css/App.css';
 
 // todo: pass this to redux?
+
 class App extends Component {
   
   constructor(props) {
@@ -29,7 +37,13 @@ class App extends Component {
 
         {/* set your routes here and add the className="app-route" to the components*/ }
           <Route path="/jobs" component={Jobs}/>
+
+         <JobAdd/>
+
+        <AppHeader/>
+        <Home/>
         <AppFooter/>
+
       </div>
     );
   }

@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 import employee from './users'
+
+var router = express.Router();
 
 router.use('/employee', employee);
 
