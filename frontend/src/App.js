@@ -30,21 +30,19 @@ class App extends Component {
   }
 
   render() {
+    const { headerClass } = this.state;
     return (
-      <Switch className="App">
-        <AppHeader className={this.state.headerClass} />
+      <div className="App">
+        <AppHeader className={headerClass} />
         <Route exact path="/" component={Home} />
-
         {/* set your routes here and add the className="app-route" to the components*/}
         <Route exact path="/jobs" component={Jobs} />
         <Route path="/jobs/add" component={JobAdd} />
 
-
         <AppHeader />
-        <Home />
         <AppFooter />
 
-      </Switch>
+      </div>
     );
   }
 

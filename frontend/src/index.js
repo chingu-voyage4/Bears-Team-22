@@ -11,7 +11,6 @@ import client from './graphql/clientGraphql';
 
 
 
-
 // const startPoint = (<ApolloProvider client={client}>
 //     <App />
 // </ApolloProvider>)
