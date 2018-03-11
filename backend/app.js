@@ -1,11 +1,33 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-import config from './config';
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+import {myAtlasConnection, connectionString } from './config';
 import api from './routes';
+import schema from './graphql/schemas';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
-var app = express();
-app.use(bodyParser.json());
+
+
+
+mongoose.Promise = global.Promise;
+const app = express();;
+mongoose.connect(connectionString, function(err) {
+  if(err) {
+    console.log('Connection faild ', err);
+  }
+  console.log('Connection succeful');
+});
+
+app.use(cors());
+// The GraphQL endpoint
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}))
+
+
+//app.use(bodyParser.json());
 
 //Routes
 app.use('/api', api);
