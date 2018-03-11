@@ -1,19 +1,16 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-import {myAtlasConnection, connectionString } from './config';
 import api from './routes';
 import schema from './graphql/schemas';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-
-
-
 mongoose.Promise = global.Promise;
 const app = express();;
-mongoose.connect(connectionString, function(err) {
+mongoose.connect(process.env.CONNECTIONSTRING, function(err) {
   if(err) {
     console.log('Connection faild ', err);
   }
