@@ -11,19 +11,17 @@ import client from './graphql/clientGraphql';
 
 
 
-
-// const startPoint =   (<ApolloProvider client={client}>
-//                          <App />
-//                     </ApolloProvider>)
+// const startPoint = (<ApolloProvider client={client}>
+//     <App />
+// </ApolloProvider>)
 
 
 ReactDOM.render((
     <BrowserRouter>
-       <ApolloProvider client={client}>
-           <App />
-        </ApolloProvider
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
     </BrowserRouter>
-    ), document.getElementById('root'));
+), document.getElementById('root'));
 
-ReactDOM.render(startPoint, document.getElementById('root'));
 registerServiceWorker();
