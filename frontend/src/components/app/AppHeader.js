@@ -32,7 +32,7 @@ export default class AppHeader extends Component {
 						<li><NavLink to="/jobs" className="menu-buttons">Jobs</NavLink></li>
 						<li><NavLink to="/login" className="menu-buttons">Login</NavLink></li>
 						<li><NavLink to="/join" className="menu-buttons">Join</NavLink></li>
-						<li><Link to="/link" className="menu-buttons btn-remark">Company</Link></li>
+						<li><Link to="/company" className="menu-buttons btn-remark">Company</Link></li>
 					</nav>
 				</header>
 			)
