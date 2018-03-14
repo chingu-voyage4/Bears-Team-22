@@ -1,14 +1,13 @@
-import Job from './jobSchema'; 
+import Job from './jobSchema';
 import Message from './messageSchema';
 import resolvers from '../resolvers';
-import jobResolvers from '../resolvers/jobResolvers';
 const { makeExecutableSchema } = require('graphql-tools');
 
 
 const RootQuery = `
   type RootQuery {
-      job,
-      message
+		job,
+		message
   }
 `;
 

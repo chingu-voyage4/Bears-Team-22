@@ -28,3 +28,4 @@ yarn-error.log*
 # configuration files
 backend/config.js
 backend/.env
+.editorconfig

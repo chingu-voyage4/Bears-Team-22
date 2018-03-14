@@ -1,4 +1,4 @@
-import Message from '../model/Message';
+import Message from '../../models/Message';
 import { Types } from 'mongoose';
 
 const messageResolvers = {
