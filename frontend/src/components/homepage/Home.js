@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HomeCover from './components/HomeCover';
 import HomeCoverVideo from './components/HomeCoverVideo';
 import HomeQuote from './components/HomeQuote';
@@ -25,7 +26,7 @@ const Home = props => {
 
             <section className="section-part quote">
                 <h1 className="section-part__title white"> Are you a Company? </h1>
-                <a href="/new_job" className="btn-white"> Post a Job </a>
+                <Link to="/jobs/add" className="btn-white"> Post a Job </Link>
 
             </section>
 
@@ -90,7 +91,7 @@ const Home = props => {
                     skladj aksjdk sajdkajsd kasj dkjas kjdkas jdksaj kdja ksjks jdk
                 </p>
 
-                <a href="/registration" className="btn-white"> Join </a>
+                <Link to="/join" className="btn-white"> Join </Link>
 
 
             </section>
