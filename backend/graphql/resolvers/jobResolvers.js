@@ -1,10 +1,10 @@
-import  jobModel from '../model/jobModel';
+import  jobModel from '../../models/Jobs';
 
 
 const jobResolvers = {
   Query: {
-     job(_,{id}) {       
-       return jobModel.find({id: id}, {"_id":0, "id":1, "positionName":1}).then(function(job)
+     job(_,{_id}) {       
+       return jobModel.find({_id: _id}, {"_id":0, "id":1, "positionName":1}).then(function(job)
        {         
          return job[0];        
        },
@@ -14,7 +14,7 @@ const jobResolvers = {
        );
      },
      jobs() {
-     return jobModel.find({},{"_id":0, "id":1, "positionName":1}).then(function(job) {        
+       return jobModel.find({},{"_id":0, "id":1, "positionName":1}).then(function(job) {        
          return  job; 
        },    
        function(err) {  
