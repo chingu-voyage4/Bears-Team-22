@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-
 import { Route, withRouter, Switch } from 'react-router-dom';
-
-
-import JobAdd from './components/jobs/JobAdd'
-import './assets/css/App.css';
-
-
 import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
-import Home from './components/homepage/Home';
-import Jobs from './components/jobs/Jobs';
+import homeRoutes from './routes/homeRoutes'; 
 import './assets/css/App.css';
 
 // todo: pass this to redux?
@@ -30,21 +22,19 @@ class App extends Component {
   }
 
   render() {
+    const { headerClass } = this.state;
     return (
-      <Switch className="App">
-        <AppHeader className={this.state.headerClass} />
-        <Route exact path="/" component={Home} />
+      <div className="App">
+        <AppHeader className={headerClass} />
 
-        {/* set your routes here and add the className="app-route" to the components*/}
-        <Route exact path="/jobs" component={Jobs} />
-        <Route path="/jobs/add" component={JobAdd} />
+        <Switch>
+          { homeRoutes.map((route, index) => ( 
+            <Route key={index} exact={route.exact} path={route.path} component={route.component}/> 
+          )) } 
+        </Switch>
 
-
-        <AppHeader />
-        <Home />
-        <AppFooter />
-
-      </Switch>
+        <AppFooter/>
+      </div>
     );
   }
 
