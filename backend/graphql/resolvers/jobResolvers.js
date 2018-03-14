@@ -13,7 +13,6 @@ const jobResolvers = {
        );
      },
      jobs() {
-			console.log('here we go');
      	return jobModel.find({},{"_id":0, "id":1, "positionName":1}).then(function(job) {
          return  job;
        },
