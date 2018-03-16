@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
  const JobSchema = new Schema({
-   _id: { type: Schema.Types.ObjectId, },
+   id: { type: Number, },
    positionName: { type: String, required: [true, 'The position name is mandatory'], trim: true },
    jobTitle: { type: String, required: [true, 'The job title is mandatory'], trim: true },
    company: { type: Schema.Types.ObjectId, ref: 'Company' },

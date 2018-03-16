@@ -1,10 +1,10 @@
 const jobSchema = ` 
 extend type Query {
   jobs: [Job],
-  job(_id: Int!): Job
+  job(id: Int!): Job
 }
   type Job {    
-      _id: Int,
+      id: Int,
       positionName: String,
       jobTitle: String,
       company: [Company],

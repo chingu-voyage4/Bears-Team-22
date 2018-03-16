@@ -1,6 +1,6 @@
 const companySchema = `
 extend type Query {
-    companys: [Company],
+    companies: [Company],
     companyById(_id: Int!): Company,
     companyByName(companyName: String): Company,
 }
