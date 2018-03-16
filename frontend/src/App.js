@@ -4,6 +4,7 @@ import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes'; 
 import './assets/css/App.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
 // todo: pass this to redux?
 

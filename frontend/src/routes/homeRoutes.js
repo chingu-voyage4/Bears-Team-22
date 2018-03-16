@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
-import JobAdd from './../components/jobs/JobAdd'
+import JobForm from './../components/jobs/JobForm'
 
 const routes = [
     {
@@ -18,7 +18,7 @@ const routes = [
 
     {
         path: '/jobs/add',
-        component: () => (<div className="app-routes"><JobAdd /></div>)
+        component: () => (<div className="app-routes"><JobForm /></div>)
     },
 
     {
