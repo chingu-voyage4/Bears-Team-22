@@ -50,6 +50,7 @@
     "validate-commit-msg": "^2.14.0"
   },
   "dependencies": {
+    "express-session": "^1.15.6",
     "react-router-dom": "^4.2.2"
   }
 }
