@@ -16,7 +16,7 @@
         "ecmaFeatures": {
             "jsx": true
         }
-    },   
+    },
     "rules": {
         "indent": [
             "error",
@@ -24,7 +24,7 @@
         ],
         "linebreak-style": [
             "error",
-            "unix"
+            "windows"
         ],
         "quotes": [
             "error",
