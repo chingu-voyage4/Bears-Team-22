@@ -1,4 +1,7 @@
-import  jobModel from '../../models/jobModel';
+
+import  jobModel from '../../models/Jobs';
+
+
 
 const jobResolvers = {
   Query: {
@@ -13,11 +16,13 @@ const jobResolvers = {
        );
      },
      jobs() {
-     	return jobModel.find({},{"_id":0, "id":1, "positionName":1}).then(function(job) {
-         return  job;
-       },
-       function(err) {
-         console.log('cry error ', err);
+
+       return jobModel.find({},{"_id":0, "id":1, "positionName":1}).then(function(job) {        
+         return  job; 
+       },    
+       function(err) {  
+         console.log('cry error ', err);                 
+
        }
      );
    }

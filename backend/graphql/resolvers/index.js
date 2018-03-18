@@ -4,5 +4,8 @@ import messageResolvers from './messageResolvers';
 import accountResolvers from './accountResolvers';
 import { resolve } from 'path';
 
-const rootResolvers = {};
-export default [jobResolvers, messageResolvers, accountResolvers];
+
+const rootResolvers = {  };
+const resolvers = merge(rootResolvers,jobResolvers);
+export default resolvers; 
+
