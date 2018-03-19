@@ -27,6 +27,7 @@ const AccountSchema = `
     extend type Mutation {
       registerAccount(email: String, password: String, fullname: String) : Account
 			login(email: String, password: String) : Account
+			forgotPassword(email: String) : String
 			remove: Boolean
     }
 `;

@@ -24,7 +24,13 @@ const AccountResolvers = {
 				const account = new Account({email: args.email});
 				const result = await account.authenticate( args.password);
 				return (result) ? result.user : {};
+      },
+
+      async forgotPassword(_, args, context) {
+				const result = await Account.find({ email: args.email });
+				return (result) ? 'your_token' : {};
 			},
+
 
 			remove() {
 				return Account.remove({})

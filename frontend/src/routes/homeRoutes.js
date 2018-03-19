@@ -4,6 +4,7 @@ import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
 import JobAdd from './../components/jobs/JobAdd';
 import Login from './../components/auth/login/Login';
+import ForgotPassword from './../components/auth/login/ForgotPassword';
 
 const routes = [
     {
@@ -24,9 +25,17 @@ const routes = [
 
     {
         path: '/login',
+        exact: true,
         component: () => (<div className="bg-dark-gradient auth-route flex-center">
                             <Login/>
                           </div>)
+    },
+    {
+      path: '/login/forgot',
+      exact: true,
+      component: () => (<div className="bg-dark-gradient auth-route flex-center">
+                          <ForgotPassword/>
+                        </div>)
     },
 
     {
