@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 import apolloReducer from '../graphql/clientGraphql';
+import userProfileReducer from './userProfileReducers';
 
-const reducer = ' ';
+const rootReducer = combineReducers({
+  // combine reducers
+  userProfileReducer,
+  apolloReducer
+});
 
-export default reducer;
+export default rootReducer;
