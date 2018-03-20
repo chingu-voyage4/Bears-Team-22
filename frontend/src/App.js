@@ -4,7 +4,19 @@ import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
 import './assets/css/App.css';
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
+
+const currentUser = gql`
+query me {
+  me {
+    id,
+    email,
+    accountType
+  }
+}
+`
 // todo: pass this to redux?
 
 class App extends Component {
@@ -34,7 +46,7 @@ class App extends Component {
 
         <Switch>
           { homeRoutes.map((route, index) => (
-            <Route key={index} exact={route.exact} path={route.path} component={route.component}/>
+            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes}/>
           )) }
         </Switch>
 
@@ -48,6 +60,10 @@ class App extends Component {
     const headerClass = pathname === '/' ? 'home' : '';
     this.setState((state) => ({ headerClass: headerClass, headerVisible: !(pathname.includes('/login'))}));
   }
+
+  getCurrentUser() {
+
+  }
 }
 
-export default withRouter(App);
+export default withRouter(graphql(currentUser)(App))

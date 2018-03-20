@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import employerRoutes from './employerRoutes';
+import Company from './../components/company';
+import ForgotPassword from './../components/auth/login/ForgotPassword';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
 import JobAdd from './../components/jobs/JobAdd';
 import Login from './../components/auth/login/Login';
-import ForgotPassword from './../components/auth/login/ForgotPassword';
 
 const routes = [
     {
@@ -57,8 +59,9 @@ const routes = [
         path: '/company',
         component: () => (<div className="app-routes">
                             {/* replace for a component */}
-                            <h1> company stuff here </h1>
-                        </div>)
+                            <Company/>
+                        </div>),
+        routes: employerRoutes
     }
 
 ]

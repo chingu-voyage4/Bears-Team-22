@@ -77,7 +77,8 @@ class Login extends Component{
       this.loadIndicator(false);
       console.log(data)
       const { email, accountType } = data.login;
-      alert(`Welcome ${email} you are a ${accountType}`)
+      alert(`Welcome ${email} you are a ${accountType}`);
+      window.location.href = `${window.location.origin}/company`;
     })
     .catch((err) => {
       alert(err.toString());
