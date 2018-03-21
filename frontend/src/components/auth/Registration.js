@@ -85,8 +85,9 @@ class Registration extends Component{
       this.loadIndicator(false);
       console.log(data)
       const { email, accountType } = data.registerAccount;
+      const redirection = accountType || 'employee';
       alert(`Welcome ${email} you are a ${accountType}`);
-      window.location.href = `${window.location.origin}/company`;
+      window.location.href = `${window.location.origin}/${redirection}`;
     })
     .catch((err) => {
       alert(err.toString());

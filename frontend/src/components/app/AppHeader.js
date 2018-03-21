@@ -24,7 +24,7 @@ export default class AppHeader extends Component {
 					</div>
 
 					<nav className="menu mobile-nav">
-						<li><a href="/link" className="menu-buttons">Login</a></li>
+						<li><a href="/login" className="menu-buttons">Login</a></li>
 					</nav>
 
 					<nav className={this._menuTriggerClass()}>

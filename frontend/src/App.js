@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
@@ -46,11 +47,15 @@ class App extends Component {
       <div className="App">
         {this.state.headerVisible && (<AppHeader className={headerClass} />)}
 
-        <Switch>
-          { homeRoutes.map((route, index) => (
-            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes}/>
-          )) }
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition classNames="fade" timeout={300}>
+            <Switch>
+              { homeRoutes.map((route, index) => (
+                <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes}/>
+              )) }
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
 
         {this.state.headerVisible && (<AppFooter/>)}
       </div>
@@ -61,6 +66,7 @@ class App extends Component {
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
     const noHeaderRoutes = ['/login', '/join']
+    window.scrollTo(0,0);
     this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname))}));
   }
 }
