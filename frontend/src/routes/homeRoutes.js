@@ -2,11 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import employerRoutes from './employerRoutes';
 import Company from './../components/company';
-import ForgotPassword from './../components/auth/login/ForgotPassword';
+import ForgotPassword from './../components/auth/ForgotPassword';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
 import JobAdd from './../components/jobs/JobAdd';
 import Login from './../components/auth/login/Login';
+import Registration from './../components/auth/Registration';
 
 const routes = [
     {
@@ -42,9 +43,8 @@ const routes = [
 
     {
         path: '/join',
-        component: () => (<div className="app-routes">
-                            {/* replace for a component */}
-                            <h1> employee registration </h1>
+        component: () => (<div className="bg-dark-gradient auth-route flex-center">
+                            <Registration/>
                           </div>)
     },
     {

@@ -9,8 +9,8 @@ import gql from "graphql-tag";
 
 
 const currentUser = gql`
-query me {
-  me {
+query currentUser {
+  currentUser {
     id,
     email,
     accountType
@@ -40,6 +40,8 @@ class App extends Component {
 
   render() {
     const { headerClass } = this.state;
+    window.currentUser = this.props.data.currentUser; // pass to redux
+
     return (
       <div className="App">
         {this.state.headerVisible && (<AppHeader className={headerClass} />)}
@@ -58,12 +60,11 @@ class App extends Component {
   // this change the style of the header depending if it's the homepage
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
-    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(pathname.includes('/login'))}));
-  }
-
-  getCurrentUser() {
-
+    const noHeaderRoutes = ['/login', '/join']
+    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname))}));
   }
 }
 
-export default withRouter(graphql(currentUser)(App))
+export default withRouter(graphql(currentUser, {
+  currentUser: ({ data }) => data.currentUser
+})(App))

@@ -20,15 +20,16 @@ const AccountSchema = `
 		}
 
     extend type Query {
-			me: Account,
+			currentUser: Account,
 			accounts: [Account]
     }
 
     extend type Mutation {
-      registerAccount(email: String, password: String, fullname: String) : Account
+      registerAccount(email: String, password: String, fullname: String, accountType: String) : Account
 			login(email: String, password: String) : Account
 			forgotPassword(email: String) : String
-			remove: Boolean
+      logout: Boolean,
+      remove: Boolean
     }
 `;
 

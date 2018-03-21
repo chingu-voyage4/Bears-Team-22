@@ -4,9 +4,7 @@ import employerRoutes from './../../routes/employerRoutes'
 
 class Company extends Component {
   render() {
-    console.log(this.props)
     return (
-
       <div>
         <Switch>
           { employerRoutes.map((route, index) =>
@@ -37,7 +35,8 @@ const PrivateRoute = ({ component: Component, ...attributes }) => (
 
 const user = {
   isCompany() {
-    return false;
+    console.log(window.currentUser)
+    return (window.currentUser && window.currentUser.accountType == 'company');
   },
 
   isUser() {

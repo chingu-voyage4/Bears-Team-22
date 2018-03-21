@@ -12,24 +12,27 @@ import api from './routes';
 import schema from './graphql/schemas';
 import cors from 'cors';
 const app = express();
-app.use(session({
-	 secret: 'jabbatical-clone',
-	 resave: true ,
-	 saveUninitialized: true,
-	store: new MongoStore({mongooseConnection: db})
- }));
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+  saveUnitialized: false,
+  resave: false,
+  cookie: { secure: false}
+};
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({secret: 'jabbatical-clone', resave: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
 
 // The GraphQL endpoint
 app.use('/graphql', graphqlExpress((req, res) => ({
 	 schema,
 	 rootValue: { session: req.session, user: req.user },
 	 graphiql: true,
-	 context: { req }
+	 context: req
  })));
 
 
