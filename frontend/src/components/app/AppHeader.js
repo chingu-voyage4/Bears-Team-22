@@ -20,7 +20,7 @@ export default class AppHeader extends Component {
 					</button>
 
 					<div className="brand">
-						<h1 className="brand-name title"> App Name</h1>
+						<h1 className="brand-name title"><Link className="brand-name title" to="/"> App Name</Link></h1>
 					</div>
 
 					<nav className="menu mobile-nav">

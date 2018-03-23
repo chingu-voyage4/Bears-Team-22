@@ -22,6 +22,7 @@ class Login extends Component{
   }
 
   render() {
+    console.log(this.props);
     return(
       <div className="login-box">
         <div className="login-box__header">
@@ -76,12 +77,14 @@ class Login extends Component{
     })
     .then(({ data }) => {
       this.loadIndicator(false);
-      console.log(data)
-      const { email, accountType } = data.login;
-      const redirection = accountType || 'employee';
-
-      alert(`Welcome ${email} you are a ${accountType}`);
-      window.location.href = `${window.location.origin}/${redirection}`;
+      const currentUser = data.login;
+      if (currentUser) {
+        window.currentUser = currentUser; // pass to redux Jesus
+        const { email, accountType } = currentUser;
+        const redirection = accountType || 'employee';
+        alert(`Welcome ${email} you are a ${accountType}`);
+        this.props.history.push(`/${redirection}`);
+      }
     })
     .catch((err) => {
       alert(err.toString());

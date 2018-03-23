@@ -41,7 +41,10 @@ class App extends Component {
 
   render() {
     const { headerClass } = this.state;
-    window.currentUser = this.props.data.currentUser; // pass to redux
+    const currentUser = this.props.data.currentUser;
+    if (currentUser) {
+      window.currentUser = currentUser; // pass to redux
+    }
 
     return (
       <div className="App">

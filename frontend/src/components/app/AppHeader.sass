@@ -12,7 +12,7 @@
 	position: static
 	transform: translateX(0)
 	transition: all ease .3s
-	
+
 %normal-nav-li
 	list-style: none
 	margin: 0
@@ -47,10 +47,14 @@
 .brand
 
 .brand-name
-	color: var(--primary-color)
-	font-size: 20px
-	font-family: 'Kanit'
-// Menu 
+  font-size: 20px
+  font-family: 'Kanit'
+  color: var(--primary-color)
+
+  &:hover
+    color: var(--primary-color)
+    text-decoration: none
+// Menu
 .menu-toggle
 	background: transparent
 	border: 0
@@ -79,13 +83,13 @@
 
 .menu
 	@extend %normal-nav
-	
+
 	li
 		@extend %normal-nav-li
 
 	.menu-buttons
 		@extend %normal-menu-buttons
-		
+
 @media (max-width: $desktop)
 	.menu.mobile
 		+makeFlex(column, flex-start, flex-start)
@@ -115,7 +119,7 @@
 
 	.mobile-nav
 		width: fit-content
-		
+
 		.menu-buttons
 			padding: 0
 			margin: 0 6px
@@ -128,12 +132,12 @@
 @media (min-width: $desktop)
 	.app-header
 		padding: 0 50px
-		
+
 		&.home
 			box-shadow: none
-			background: transparent 
+			background: transparent
 			border-bottom: 0
-		
+
 		&.scrolled
 			background: var(--dark-color)
 			border-bottom: 1px solid #777
@@ -143,13 +147,13 @@
 		font-size: 28px
 		color: lighten($primary-color, 20%)
 
-	// menu	
+	// menu
 	.menu-toggle
 		display: none
-	
+
 	.mobile-nav
 		display: none
-		
+
 	.btn-remark
 		background: var(--primary-color)
 		border-radius: 4px
