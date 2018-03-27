@@ -35,8 +35,8 @@ const PrivateRoute = ({ component: Component, ...attributes }) => (
 
 const user = {
   isCompany() {
-    console.log(window.currentUser)
-    return (window.currentUser && window.currentUser.accountType == 'company');
+    return true;
+    return (window.currentUser && (window.currentUser.accountType == 'company'));
   },
 
   isUser() {
