@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import AppRedirect from './../../app/AppRedirect';
 import './Login.css';
 
 const doLogin = gql`
@@ -22,7 +23,6 @@ class Login extends Component{
   }
 
   render() {
-    console.log(this.props);
     return(
       <div className="login-box">
         <div className="login-box__header">
@@ -83,14 +83,14 @@ class Login extends Component{
         const { email, accountType } = currentUser;
         const redirection = accountType || 'employee';
         alert(`Welcome ${email} you are a ${accountType}`);
-        this.props.history.push(`/${redirection}`);
+        this.props.history.push(`/${redirection}`)
       }
     })
     .catch((err) => {
-      alert(err.toString());
+      console.log(err.toString());
       this.loadIndicator(false);
     });
   }
 }
 
-export default graphql(doLogin)(Login);
+export default withRouter(graphql(doLogin)(Login));

@@ -14,7 +14,9 @@ query currentUser {
   currentUser {
     id,
     email,
-    accountType
+    accountType,
+    fullname,
+    picture
   }
 }
 `
@@ -42,9 +44,13 @@ class App extends Component {
   render() {
     const { headerClass } = this.state;
     const currentUser = this.props.data.currentUser;
+
     if (currentUser) {
       window.currentUser = currentUser; // pass to redux
     }
+
+    console.log(this.context);
+    console.log(this.props);
 
     return (
       <div className="App">

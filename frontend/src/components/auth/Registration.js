@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import { Link } from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 
 const doRegistration = gql`
 mutation registerAccount($email: String, $password: String, $fullname: String, $accountType: String) {
@@ -92,7 +92,7 @@ class Registration extends Component{
         const { email, accountType } = currentUser;
         const redirection = accountType || 'employee';
         alert(`Welcome ${email} you are a ${accountType}`);
-        window.location.href = `${window.location.origin}/${redirection}`;
+        this.props.history.push(`/${redirection}`)
       }
     })
     .catch((err) => {
@@ -102,4 +102,4 @@ class Registration extends Component{
   }
 }
 
-export default graphql(doRegistration)(Registration);
+export default withRouter(graphql(doRegistration)(Registration));

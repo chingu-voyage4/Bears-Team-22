@@ -4,6 +4,7 @@ const AccountSchema = `
 				email: String!,
 				password: String,
         fullname: String,
+        picture: String,
 				social: Social,
 				accountType: String
         isDeactivated: Boolean,

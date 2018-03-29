@@ -4,7 +4,7 @@
 
 %normal-nav
 	+makeFlex(row, flex-end, center)
-	+size(50%, 70px)
+	+size(60%, 70px)
 	align-self: flex-end
 	margin-left: auto
 	min-height: 70px
@@ -89,6 +89,44 @@
 
 	.menu-buttons
 		@extend %normal-menu-buttons
+
+
+.profile-menu
+  +makeFlex(row, center, center)
+  top: 0
+  height: fit-content
+  align-self: flex-start
+  height: 100%
+  position: relative
+
+  li
+    list-style: none
+
+    a
+      makeFlex(row, center, center)
+      height: 100%
+
+    &:hover
+      .submenu
+        +makeFlex(column, flex-start, center)
+
+.submenu
+  display: none
+  position: absolute
+  top: 70px
+  background: white
+  color: $dark-color
+  padding: 10px 5px
+  width: 150%;
+  right: 0;
+  li a
+    color: $dark-color
+
+.profile-picture
+  +size(40px, 40px)
+  border-radius: 50%
+  border: 2px solid white
+
 
 @media (max-width: $desktop)
 	.menu.mobile
