@@ -38,6 +38,7 @@ const routes = [
                             <h1> My Posts </h1>
                           </div>)
     },
+
     {
         path: '/company/savedCandidates',
         component: () => (<div className="app-routes">
