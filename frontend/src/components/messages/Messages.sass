@@ -1,0 +1,65 @@
+@import 'assets/css/1-base/_base'
+
+.message-section
+  margin-top: -20px
+  height: calc(100vh - 90px)
+
+.message-list
+  &__container
+    height: 100%
+
+  &__header
+    +makeFlex(row, center, center)
+    background: lighten($primary-color, 35%)
+    height: 50px
+
+.thread
+  +makeFlex(row, flex-start, center)
+  height: 80px
+  padding: 0 20px
+  transition: all ease .3s
+
+  &:hover
+    text-decoration: none
+    background: lighten($primary-color, 49%)
+
+  &__user-picture
+    +size(70px, 70px)
+    background: red
+    border-radius: 50%
+    margin-right: 10px
+
+  &__picture-container
+    padding: 20px 0
+
+  &__content
+    border-bottom: 1px solid #ccc
+    +size(100%, 100%)
+    text-align: left
+    padding: 5px 0
+
+  &__header
+    +makeFlex(row, space-between, center)
+    color: #333
+
+  &__title
+    font-weight: bolder
+
+  &__body
+    color: #999
+
+@media (min-width: $desktop)
+  .message-section
+    margin-top: -20px
+    height: calc(100vh - 90px)
+
+  .message-list
+    &__container
+      height: 100%
+      width: 30%
+      border-left: 2px solid #333
+
+    &__header
+      +makeFlex(row, center, center)
+      background: lighten($primary-color, 55%)
+      height: 50px

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import Messages from './../components/messages/messages';
+import Messages from './../components/messages/Messages';
 
 const routes = [
     {
