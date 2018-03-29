@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class MessageView extends Component {
+
+  componentDidMount() {
+    this.goToMessagesEnd();
+  }
+
   render() {
     return (
     <div className="message-view__container">
@@ -9,17 +14,18 @@ class MessageView extends Component {
         { this.renderMessageList()}
       </div>
 
-      <div className="message-view__new">
+      <div className="message-view__text-box">
+        <textarea name="newMessage" className="message-view__new-message" placeholder="type a message"></textarea>
+        <button className="btn message-view__send"> Send </button>
       </div>
     </div>)
   }
 
   renderMessageList = () => {
     const { messages } = this.props;
-
-    return messages.map( message => {
+    return messages.map( (message, i) => {
       return (
-        <div className={this.getMessageClass(message)} key={message.id}>
+        <div key={i} className={this.getMessageClass(message)}>
             <p className="message__body"> {message.text} </p>
             <p className="message__footer">
               <small className="message__time"> 7:45 pm </small>
@@ -37,6 +43,12 @@ class MessageView extends Component {
       messageClass += ' me'
     }
     return messageClass;
+  }
+
+  goToMessagesEnd = () => {
+    const messagesElement = document.querySelector('.message-view__messages');
+    const top = messagesElement.scrollHeight - messagesElement.clientHeight;
+    messagesElement.scrollTop = top
   }
 }
 

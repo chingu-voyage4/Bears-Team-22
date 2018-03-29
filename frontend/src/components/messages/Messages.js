@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MessageList from './MessageList';
 import MessageView from './MessageView';
 import './Messages.css';
+import placeholder from './../../assets/img/placeholder.jpg';
 export default class Messages extends Component {
 
   state = {
@@ -10,12 +11,12 @@ export default class Messages extends Component {
       id: 1,
       members: ['jesusant.guerrero@gmail.com','test@example.com'],
       company: {
-        picture: '',
+        picture: placeholder,
         fullname: 'The Company'
       },
       employee: {
        fullname: 'The Candidate',
-       picture: ''
+       picture: placeholder
       },
       messages: [{
         text: 'Hello World'
@@ -26,12 +27,12 @@ export default class Messages extends Component {
         id: 2,
         members: ['jesusant.guerrero@gmail.com','test@example.com'],
         company: {
-          picture: '',
+          picture: placeholder,
           fullname: 'The Company'
         },
         employee: {
         fullname: 'The Candidate',
-        picture: ''
+        picture: placeholder
         },
         messages: [{
           text: 'Message Two'
@@ -58,14 +59,14 @@ export default class Messages extends Component {
           thread: 1,
           sender: 'me@jesusant.guerrero.com',
           receiver: 'test@example.com',
-          text: 'Hola Como Estan',
+          text: 'Hello I am the candidate',
           seen: false },
           {
             id: 2,
             thread: 1,
             sender: 'test@example.com',
             receiver: 'me@jesusant.guerrero.com',
-            text: 'Hola Pueblo ',
+            text: 'Hello I am the company ',
             seen: false
           },
           {
@@ -73,14 +74,14 @@ export default class Messages extends Component {
             thread: 1,
             sender: 'me@jesusant.guerrero.com',
             receiver: 'test@example.com',
-            text: 'Hola Como Estan',
+            text: 'candidate message',
             seen: false },
             {
               id: 2,
               thread: 1,
               sender: 'test@example.com',
               receiver: 'me@jesusant.guerrero.com',
-              text: 'Hola Pueblo ',
+              text: 'company message',
               seen: false
             },
             {
@@ -88,14 +89,14 @@ export default class Messages extends Component {
               thread: 1,
               sender: 'me@jesusant.guerrero.com',
               receiver: 'test@example.com',
-              text: 'Hola Como Estan',
+              text: 'candidate message',
               seen: false },
               {
                 id: 2,
                 thread: 1,
                 sender: 'test@example.com',
                 receiver: 'me@jesusant.guerrero.com',
-                text: 'Hola Pueblo ',
+                text: 'company message',
                 seen: false
               },
               {
@@ -103,14 +104,14 @@ export default class Messages extends Component {
                 thread: 1,
                 sender: 'me@jesusant.guerrero.com',
                 receiver: 'test@example.com',
-                text: 'Hola Como Estan',
+                text: 'candidate message',
                 seen: false },
                 {
                   id: 2,
                   thread: 1,
                   sender: 'test@example.com',
                   receiver: 'me@jesusant.guerrero.com',
-                  text: 'Hola Pueblo ',
+                  text: 'company message',
                   seen: false
                 }
         ]
@@ -118,13 +119,14 @@ export default class Messages extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="message-section">
         <div className="message-list__container">
           <div className="message-list__header">
             <h4> Messages </h4>
           </div>
-            <MessageList messages={this.state.threads} type="employee"/>
+            <MessageList messages={this.state.threads} accountType="company" receiverType="employee"/>
         </div>
 
         <div className="message-view">

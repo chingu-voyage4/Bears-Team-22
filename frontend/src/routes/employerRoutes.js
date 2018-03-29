@@ -26,7 +26,7 @@ const routes = [
         component: () => <Messages/>
     },
     {
-      path: '/company/messages',
+      path: '/company/messages/:threadId?',
       exact: true,
       component: () => (<Messages/>)
     },

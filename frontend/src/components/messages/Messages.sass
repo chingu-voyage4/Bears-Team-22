@@ -40,6 +40,20 @@
         &:hover
           background-color: $primary-color
 
+  &__text-box
+    +makeFlex(row, center, center)
+    height: 50px
+
+  &__new-message
+    +size(80%, 100%)
+    padding: 0 10px
+
+  &__send.btn
+    margin: 0 0 0 0
+    height: 100%
+    width: 20%
+    border-radius: 0
+
 .thread
   +makeFlex(row, flex-start, center)
   height: 80px
@@ -48,6 +62,9 @@
 
   &:hover
     text-decoration: none
+    background: lighten($primary-color, 49%)
+
+  &.active
     background: lighten($primary-color, 49%)
 
   &__user-picture
