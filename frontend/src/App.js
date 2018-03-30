@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import AppHeader from './components/app/AppHeader';
+import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
 import './assets/css/App.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -56,14 +56,14 @@ class App extends Component {
         <TransitionGroup>
           <CSSTransition classNames="fade" timeout={300}>
             <Switch>
-              { homeRoutes.map((route, index) => (
-                <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes}/>
-              )) }
+              {homeRoutes.map((route, index) => (
+                <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes} />
+              ))}
             </Switch>
           </CSSTransition>
         </TransitionGroup>
 
-        {this.state.headerVisible && (<AppFooter/>)}
+        {this.state.headerVisible && (<AppFooter />)}
       </div>
     );
   }
@@ -72,8 +72,8 @@ class App extends Component {
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
     const noHeaderRoutes = ['/login', '/join']
-    window.scrollTo(0,0);
-    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname))}));
+    window.scrollTo(0, 0);
+    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname)) }));
   }
 }
 
