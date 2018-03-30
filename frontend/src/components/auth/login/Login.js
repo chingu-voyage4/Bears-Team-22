@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import AppRedirect from './../../app/AppRedirect';
 import './Login.css';
+
+// queries
+import GET_CURRENT_USER from './../../../graphql/getCurrentUser';
 
 const doLogin = gql`
 mutation login($email: String, $password: String){
@@ -72,22 +76,39 @@ class Login extends Component {
   login = (email, password) => {
     this.props.mutate({
       variables: { email, password },
-      credentials: 'include'
+
+      refetchQueries: [{
+        query: GET_CURRENT_USER,
+      }],
+
+      update: ((cache, { data: { login } }) => {
+        const { currentUser } = cache.readQuery({ query: GET_CURRENT_USER });
+        cache.writeQuery({
+          data: { GET_CURRENT_USER, currentUser: login }
+        });
+        const currentUser2 = cache.readQuery({ query: GET_CURRENT_USER }).currentUser;
+        console.log(currentUser2)
+
+      })
     })
+
       .then(({ data }) => {
         this.loadIndicator(false);
-        console.log(data)
-        const { email, accountType } = data.login;
-        const redirection = accountType || 'employee';
-
-        alert(`Welcome ${email} you are a ${accountType}`);
-        window.location.href = `${window.location.origin}/${redirection}`;
+        const currentUser = data.login;
+        if (currentUser) {
+          const { email, accountType } = currentUser;
+          const redirection = accountType || 'employee';
+          alert(`Welcome ${email} you are a ${accountType}`);
+          setTimeout(() => {
+            this.props.history.push(`/${redirection}`)
+          }, 200);
+        }
       })
       .catch((err) => {
-        alert(err.toString());
+        console.log(err.toString());
         this.loadIndicator(false);
       });
   }
 }
 
-export default graphql(doLogin)(Login);
+export default withRouter(graphql(doLogin)(Login));

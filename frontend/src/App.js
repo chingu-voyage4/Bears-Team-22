@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
 import './assets/css/App.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-
 
 const currentUser = gql`
 query currentUser {
   currentUser {
     id,
     email,
-    accountType
+    accountType,
+    fullname,
+    picture
   }
 }
 `
@@ -40,19 +43,24 @@ class App extends Component {
 
   render() {
     const { headerClass, headerVisible } = this.state;
-    const { data } = this.props;
-    const { currentUser } = data;
-    window.currentUser = currentUser; // pass to redux
+    const currentUser = this.props.data.currentUser;
+    if (currentUser) {
+      window.currentUser = currentUser; // pass to redux
+    }
 
     return (
       <div className="App">
         {headerVisible && (<AppHeader className={headerClass} />)}
 
-        <Switch>
-          {homeRoutes.map((route, index) => (
-            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes} />
-          ))}
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition classNames="fade" timeout={300}>
+            <Switch>
+              {homeRoutes.map((route, index) => (
+                <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes} />
+              ))}
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
 
         {headerVisible && (<AppFooter />)}
       </div>
@@ -63,6 +71,7 @@ class App extends Component {
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
     const noHeaderRoutes = ['/login', '/join'];
+    window.scrollTo(0, 0);
     this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname)) }));
   }
 }
