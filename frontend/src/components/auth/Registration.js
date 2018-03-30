@@ -21,6 +21,7 @@ class Registration extends Component{
     fullName: '',
     accountType: '',
     accountTypes: ['employee', 'company'],
+    confirmPassword: '',
     loading: false
   }
 
@@ -35,7 +36,7 @@ class Registration extends Component{
           <form onSubmit={this._handleSubmit}>
             <input className="in-controls" required name="email" placeholder="Email" onChange={this._handleChange}/>
             <input className="in-controls" required name="password" type="password" placeholder="password" onChange={this._handleChange}/>
-            <input className="in-controls" required name="fullname" type="name" placeholder="name" onChange={this._handleChange}/>
+            <input className="in-controls" required name="confirmPassword" type="password" placeholder="confirm password" onChange={this._handleChange}/>
             <select className="in-controls" required name="accountType" onChange={this._handleChange}>
               {( this.state.accountTypes.map((type) => <option value={type}> {type} </option>))}
             </select>
@@ -44,7 +45,7 @@ class Registration extends Component{
               <small><Link to="/login"> Login </Link></small> <small><Link to="/"> Back to home</Link></small>
             </div>
 
-            <input className="btn"type="submit" value="Sign Up" onClick={this._handleSubmit} disabled={this.state.loading}/>
+            <input className="btn" type="submit" value="Sign Up" onClick={this._handleSubmit} disabled={this.state.loading}/>
               or
             <button className="btn" type="submit" onClick={this._handleSubmit}> Google </button>
             <button className="btn" type="submit" onClick={this._handleSubmit}> Facebook </button>
@@ -63,11 +64,13 @@ class Registration extends Component{
   _handleSubmit = (e) => {
     e.preventDefault()
     this.loadIndicator();
-    const { email, password, accountType, fullName } = this.state;
-    if (email && password ) {
-      this.registration(email, password, accountType, fullName);
+    const { email, password, accountType, confirmPassword, fullName } = this.state;
+    if (!(email && password && confirmPassword)) {
+      alert('fulfill the credentials');
+    } else if (password != confirmPassword ){
+      alert('the password dont match');
     } else {
-      alert('llene las credenciales');
+      this.registration(email, password, accountType, fullName);
     }
 
   }
@@ -83,10 +86,14 @@ class Registration extends Component{
     })
     .then(({ data }) => {
       this.loadIndicator(false);
-      console.log(data)
-      const { email, accountType } = data.registerAccount;
-      alert(`Welcome ${email} you are a ${accountType}`);
-      window.location.href = `${window.location.origin}/company`;
+      const currentUser = data.registerAccount;
+      if (currentUser) {
+        window.currentUser = currentUser; // TODO: pass to redux Jesus
+        const { email, accountType } = currentUser;
+        const redirection = accountType || 'employee';
+        alert(`Welcome ${email} you are a ${accountType}`);
+        window.location.href = `${window.location.origin}/${redirection}`;
+      }
     })
     .catch((err) => {
       alert(err.toString());

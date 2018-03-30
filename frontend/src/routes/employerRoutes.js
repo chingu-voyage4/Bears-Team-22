@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Messages from './../components/messages/Messages';
 
 const routes = [
     {
@@ -22,16 +23,12 @@ const routes = [
     {
         path: '/company/settings',
         exact: true,
-        component: () => (<div className="app-routes">
-                             <h1> My Settings </h1>
-                          </div>)
+        component: () => <Messages/>
     },
     {
-      path: '/company/messages',
+      path: '/company/messages/:threadId?',
       exact: true,
-      component: () => (<div className="app-routes">
-                           <h1> My messages </h1>
-                        </div>)
+      component: () => (<Messages/>)
     },
 
     {
@@ -41,6 +38,7 @@ const routes = [
                             <h1> My Posts </h1>
                           </div>)
     },
+
     {
         path: '/company/savedCandidates',
         component: () => (<div className="app-routes">
