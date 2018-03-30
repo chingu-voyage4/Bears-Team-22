@@ -5,6 +5,9 @@ import { Link, withRouter } from 'react-router-dom';
 import AppRedirect from './../../app/AppRedirect';
 import './Login.css';
 
+// queries
+import GET_CURRENT_USER from './../../../graphql/getCurrentUser';
+
 const doLogin = gql`
 mutation login($email: String, $password: String){
   login(email: $email, password: $password) {
@@ -73,8 +76,14 @@ class Login extends Component{
   login = (email, password) => {
     this.props.mutate({
       variables: { email, password },
-      credentials: 'include'
+      update: ((cache, { data : { login }}) => {
+        cache.writeQuery({
+          Query: GET_CURRENT_USER,
+          data: { currentUser: login }
+        });
+      })
     })
+
     .then(({ data }) => {
       this.loadIndicator(false);
       const currentUser = data.login;

@@ -15,16 +15,16 @@
 
 %normal-nav-li
 	list-style: none
-	margin: 0
-	width: fit-content
+	margin: 0 0 0 0
 
 %normal-menu-buttons
-	+makeFlex(row, center, center)
-	+size(fit-content, 32px)
-	font-size: 16px
-	margin-top: 0
-	padding: 15%
-	margin: 0 7px
+  +makeFlex(row, center, center)
+  height: 32px
+  font-size: 16px
+  margin-top: 0
+  padding: 0 10px
+  width: max-content
+  overflow: hidden
 
 //  styles
 
@@ -63,7 +63,6 @@
 
 	&:focus
 		outline: 0
-
 // menu
 
 .menu-buttons
@@ -75,21 +74,20 @@
 	text-align: left
 	text-decoration: none
 	transition: all ease .3s
-	width: 100%
 
 	&:hover
 		color: var(--primary-color)
 		text-decoration: none
 
 .menu
-	@extend %normal-nav
+  @extend %normal-nav
 
-	li
-		@extend %normal-nav-li
-
-	.menu-buttons
-		@extend %normal-menu-buttons
-
+  li
+    @extend %normal-nav-li
+    // width: 100%
+    text-align: center
+  .menu-buttons
+    @extend %normal-menu-buttons
 
 .profile-menu
   +makeFlex(row, center, center)
@@ -106,19 +104,35 @@
       makeFlex(row, center, center)
       height: 100%
 
-    &:hover
+    &.expanded
       .submenu
         +makeFlex(column, flex-start, center)
+
+      &:after
+        content: ''
+        +size(0, 0)
+        bottom: 0
+        right: 10px
+        position: absolute
+        border-bottom: 10px solid white
+        border-right: 10px solid transparent
+        border-left: 10px solid transparent
+        z-index: 101
 
 .submenu
   display: none
   position: absolute
-  top: 70px
+  top: 68px
   background: white
   color: $dark-color
   padding: 10px 5px
   width: 150%;
   right: 0;
+  border-radius: 4px
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, .3), 3px 6px 6px rgba(0, 0, 0, .2)
+  z-index: 100
+  border: 1px solid #ccc
+
   li a
     color: $dark-color
 
@@ -126,7 +140,7 @@
   +size(40px, 40px)
   border-radius: 50%
   border: 2px solid white
-
+  cursor: pointer
 
 @media (max-width: $desktop)
 	.menu.mobile
@@ -173,7 +187,7 @@
 
 		&.home
 			box-shadow: none
-			background: transparent
+			background: rgba(0,0,0, .1)
 			border-bottom: 0
 
 		&.scrolled
@@ -202,4 +216,4 @@
 			background: transparent
 
 @media (min-width: $large-desktop)
-	.menu
+  .menu

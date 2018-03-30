@@ -27,8 +27,8 @@ const AccountResolvers = {
 				return (result) ? result.user : {};
       },
 
-      async logout(...rest) {
-        const context = rest[3];
+      logout(...rest) {
+        const context = rest[2];
         delete context.session.user;
         context.session.save();
         return true;

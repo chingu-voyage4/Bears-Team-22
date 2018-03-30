@@ -3,6 +3,7 @@ import { router, NavLink, Link } from 'react-router-dom';
 import { withApollo } from 'react-apollo';
 import { Cache } from 'apollo-cache';
 import placeholder from './../../assets/img/placeholder.jpg';
+import Logout from './../auth/Logout';
 import './AppHeader.css';
 
 class AppHeader extends Component {
@@ -10,7 +11,8 @@ class AppHeader extends Component {
 		super(props);
 		this.state = {
 			menuExpanded: false,
-			headerClass: 'app-header'
+      headerClass: 'app-header',
+      profileExpanded: false
 		};
 		this._scrollHeader();
 	}
@@ -18,7 +20,7 @@ class AppHeader extends Component {
 	render() {
     const { data } = this.props.client.cache.data;
     const { ROOT_QUERY } = data;
-    const currentUser = (ROOT_QUERY && ROOT_QUERY.currentUser) ? data[ROOT_QUERY.currentUser.id] : {};
+    const currentUser = (ROOT_QUERY && ROOT_QUERY.currentUser) ? data[ROOT_QUERY.currentUser.id] : null;
 
     return(
       <header className={`${this.state.headerClass} ${this.props.className}`}>
@@ -30,9 +32,12 @@ class AppHeader extends Component {
           <h1 className="brand-name title"><Link className="brand-name title" to="/"> App Name</Link></h1>
         </div>
 
-        <nav className="menu mobile-nav">
-          <li><a href="/login" className="menu-buttons">Login</a></li>
-        </nav>
+        { !currentUser &&
+          (<nav className="menu mobile-nav">
+           <li><a href="/login" className="menu-buttons">Login</a></li>
+          </nav>)
+        }
+
 
         <nav className={this._menuTriggerClass()}>
         { currentUser ?
@@ -86,18 +91,18 @@ class AppHeader extends Component {
       <Fragment>
         <li><NavLink to="/company/notifications" className="menu-buttons"><i className="material-icons">notifications</i></NavLink></li>
         <li><NavLink to="/company/messages" className="menu-buttons"><i className="material-icons">message</i></NavLink></li>
-        <li><a className="menu-buttons">
-            <img src={picture} className="profile-picture"/>
+        <li className={this._profileTriggerClass()}><a className="dropdown menu-buttons" onClick={this._toggleProfile}>
+            <img src={picture} className="profile-picture" />
           </a>
           <ul className="submenu">
             <li><a className="menu-buttons">{ currentUser.email }</a></li>
             <li><NavLink to="/company/messages" className="menu-buttons">My Profile</NavLink></li>
             <li><NavLink to="/company/messages" className="menu-buttons">Preferences</NavLink></li>
-            <li><NavLink to="/company/messages" className="menu-buttons">Log Out</NavLink></li>
+            <li><Logout className="menu-buttons" /></li>
           </ul>
         </li>
       </Fragment>
-      );
+    );
   }
 
   _menuTriggerClass = () => {
@@ -106,8 +111,17 @@ class AppHeader extends Component {
     return `menu mobile ${expanded}`;
   }
 
+  _profileTriggerClass = () => {
+    const { profileExpanded } = this.state;
+    return  (profileExpanded) ? 'expanded' : '';
+  }
+
   _toggleMenu = () => {
     this.setState({ menuExpanded: !this.state.menuExpanded})
+  }
+
+  _toggleProfile = (hide) => {
+    this.setState({ profileExpanded: !this.state.profileExpanded });
   }
 
   _scrollHeader = () => {

@@ -72,7 +72,6 @@ class Registration extends Component{
     } else {
       this.registration(email, password, accountType, fullName);
     }
-
   }
 
   loadIndicator = (isLoading = true) => {

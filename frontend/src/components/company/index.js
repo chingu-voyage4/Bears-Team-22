@@ -41,7 +41,6 @@ const PrivateRoute = ({ component: Component, ...attributes }) => (
 const user = {
   isCompany(props) {
     const account  = props.data
-    console.log(account);
     return (account && (account.accountType == 'company'));
   },
 

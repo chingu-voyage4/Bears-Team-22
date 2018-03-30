@@ -8,7 +8,6 @@ import './assets/css/App.css';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-
 const currentUser = gql`
 query currentUser {
   currentUser {
@@ -48,9 +47,6 @@ class App extends Component {
     if (currentUser) {
       window.currentUser = currentUser; // pass to redux
     }
-
-    console.log(this.context);
-    console.log(this.props);
 
     return (
       <div className="App">
