@@ -9,13 +9,14 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-
 const currentUser = gql`
 query currentUser {
   currentUser {
     id,
     email,
-    accountType
+    accountType,
+    fullname,
+    picture
   }
 }
 `
@@ -43,6 +44,7 @@ class App extends Component {
   render() {
     const { headerClass } = this.state;
     const currentUser = this.props.data.currentUser;
+
     if (currentUser) {
       window.currentUser = currentUser; // pass to redux
     }

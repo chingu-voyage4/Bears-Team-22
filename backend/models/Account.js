@@ -4,7 +4,8 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const AccountSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
-	fullname: String,
+  fullname: String,
+  picture: String,
 
 	social: {
 		linkedin: String,
