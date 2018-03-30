@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './UserProfile.css';
+import { getUserProfile } from '../../actions/userProfileActions';
 
 class UserProfile extends Component {
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(getUserProfile());
+  }
+
   render() {
+    const { userProfile } = this.props;
+    const { name, location, skills, languageSkills, links } = userProfile;
     return (
       <section className="user-profile-container">
         <main className="user-profile-content">
@@ -17,10 +27,12 @@ class UserProfile extends Component {
           </section>
           <section className="user-profile-information-section">
             <div className="user-profile-form-container">
-              <h3 className="user-profile-information-header">Captain Gates</h3>
+              <h3 className="user-profile-information-header">{name}</h3>
               <div className="user-profile-body">
-                <p className="user-profile-information-paragraph">Living in:</p>
-                <p className="user-profile-information-subtext">Washington</p>
+                <p className="user-profile-information-paragraph">
+                  Living in:{' '}
+                </p>
+                <p className="user-profile-information-subtext">{location}</p>
               </div>
               <p className="user-profile-information-paragraph">
                 Introduction:{' '}
@@ -35,12 +47,16 @@ class UserProfile extends Component {
                   My most important professional skills
                 </p>
               </div>
-              <div className="user-profile-body">
-                <p className="user-profile-information-paragraph">Accounting</p>
-                <p className="user-profile-information-paragraph-dark">
-                  7+ years
-                </p>
-              </div>
+              {skills.map((skill, i) => (
+                <div className="user-profile-body" key={i}>
+                  <p className="user-profile-information-paragraph">
+                    {skill.skill}
+                  </p>
+                  <p className="user-profile-information-paragraph-dark">
+                    {skills.length} {skills.length === 1 ? 'year' : 'years'}
+                  </p>
+                </div>
+              ))}
             </div>
             <hr />
             <div className="user-profile-form-container">
@@ -52,12 +68,16 @@ class UserProfile extends Component {
                   My languages and proficiency levels
                 </p>
               </div>
-              <div className="user-profile-body">
-                <p className="user-profile-information-paragraph">French</p>
-                <p className="user-profile-information-paragraph-dark">
-                  Professional working proficiency
-                </p>
-              </div>
+              {languageSkills.map((language, i) => (
+                <div className="user-profile-body" key={i}>
+                  <p className="user-profile-information-paragraph">
+                    {language.language}
+                  </p>
+                  <p className="user-profile-information-paragraph-dark">
+                    {language.proficiency}
+                  </p>
+                </div>
+              ))}
             </div>
             <hr />
 
@@ -68,12 +88,16 @@ class UserProfile extends Component {
                   My social media and homepage links
                 </p>
               </div>
-              <div className="user-profile-body">
-                <p className="user-profile-information-paragraph">LinkedIn</p>
-                <p className="user-profile-information-paragraph-dark">
-                  https://www.linkedin.com/in/captain-gates
-                </p>
-              </div>
+              {links.map((link, i) => (
+                <div className="user-profile-body" key={i}>
+                  <p className="user-profile-information-paragraph">
+                    {link.name}
+                  </p>
+                  <p className="user-profile-information-paragraph-dark">
+                    {link.link}
+                  </p>
+                </div>
+              ))}
             </div>
             <hr />
             <div className="user-profile-form-container">
@@ -102,4 +126,13 @@ class UserProfile extends Component {
   }
 }
 
-export default UserProfile;
+UserProfile.propTypes = {
+  userProfile: PropTypes.shape({}).isRequired,
+  dispatch: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  userProfile: state.userProfileReducer.userProfile
+});
+
+export default connect(mapStateToProps)(UserProfile);
