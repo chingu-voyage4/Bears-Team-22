@@ -9,13 +9,6 @@ import registerServiceWorker from './assets/js/registerServiceWorker';
 import { ApolloProvider } from 'react-apollo';
 import client from './graphql/clientGraphql';
 
-
-
-// const startPoint = (<ApolloProvider client={client}>
-//     <App />
-// </ApolloProvider>)
-
-
 ReactDOM.render((
     <BrowserRouter>
         <ApolloProvider client={client}>
