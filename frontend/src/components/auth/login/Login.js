@@ -76,11 +76,19 @@ class Login extends Component{
   login = (email, password) => {
     this.props.mutate({
       variables: { email, password },
+
+      refetchQueries: [{
+        query: GET_CURRENT_USER,
+      }],
+
       update: ((cache, { data : { login }}) => {
+        const { currentUser } = cache.readQuery({ query: GET_CURRENT_USER });
         cache.writeQuery({
-          Query: GET_CURRENT_USER,
-          data: { currentUser: login }
+          data: { GET_CURRENT_USER, currentUser: login }
         });
+        const currentUser2  = cache.readQuery({ query: GET_CURRENT_USER }).currentUser;
+        console.log(currentUser2)
+
       })
     })
 
@@ -88,11 +96,12 @@ class Login extends Component{
       this.loadIndicator(false);
       const currentUser = data.login;
       if (currentUser) {
-        window.currentUser = currentUser; // pass to redux Jesus
         const { email, accountType } = currentUser;
         const redirection = accountType || 'employee';
         alert(`Welcome ${email} you are a ${accountType}`);
-        this.props.history.push(`/${redirection}`)
+        setTimeout(() => {
+          this.props.history.push(`/${redirection}`)
+        }, 200);
       }
     })
     .catch((err) => {

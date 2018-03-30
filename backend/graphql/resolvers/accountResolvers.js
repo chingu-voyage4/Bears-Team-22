@@ -15,9 +15,9 @@ const AccountResolvers = {
 
   Mutation: {
       async registerAccount(_, args, context) {
-        const result = await Account.register( new Account({email: args.email, fullname: args.fullname, accountType: args.accountType}), args.password)
-        saveToSession(result.user, context);
-        return result;
+        const user = await Account.register( new Account({email: args.email, fullname: args.fullname, accountType: args.accountType}), args.password)
+        saveToSession(user, context);
+        return user;
       },
 
 			async login(_, args, context) {

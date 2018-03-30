@@ -22,6 +22,9 @@ class Logout extends Component{
   logout = (e) => {
     e.preventDefault();
     this.props.mutate({
+      refetchQueries: [{
+        query: GET_CURRENT_USER,
+      }],
       update: ((cache) => {
         cache.writeQuery({
           Query: GET_CURRENT_USER,
@@ -33,7 +36,9 @@ class Logout extends Component{
       const logout = data.logout;
       if (logout) {
         alert('Good Bye, hope to see you soon')
-        this.props.history.push('/')
+        setTimeout(() => {
+          this.props.history.push('/')
+        }, 200);
       }
     })
     .catch((err) => {

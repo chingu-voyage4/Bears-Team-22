@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link , withRouter } from 'react-router-dom';
+import GET_CURRENT_USER from './../../graphql/getCurrentUser';
 
 const doRegistration = gql`
 mutation registerAccount($email: String, $password: String, $fullname: String, $accountType: String) {
@@ -81,7 +82,10 @@ class Registration extends Component{
   registration = (email, password, accountType, fullname) => {
     this.props.mutate({
       variables: { email, password, accountType, fullname },
-      credentials: 'include'
+      credentials: 'include',
+      refetchQueries: [{
+        query: GET_CURRENT_USER,
+      }],
     })
     .then(({ data }) => {
       this.loadIndicator(false);
@@ -90,8 +94,10 @@ class Registration extends Component{
         window.currentUser = currentUser; // TODO: pass to redux Jesus
         const { email, accountType } = currentUser;
         const redirection = accountType || 'employee';
-        alert(`Welcome ${email} you are a ${accountType}`);
-        this.props.history.push(`/${redirection}`)
+        setTimeout(() => {
+          this.props.history.push(`/${redirection}`)
+        }, 200);
+
       }
     })
     .catch((err) => {
