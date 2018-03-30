@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ mutation registerAccount($email: String, $password: String, $fullname: String, $
 }
 `;
 
-class Registration extends Component{
+class Registration extends Component {
   state = {
     email: '',
     password: '',
@@ -25,7 +25,8 @@ class Registration extends Component{
   }
 
   render() {
-    return(
+    const { accountTypes, loading } = this.state;
+    return (
       <div className="login-box">
         <div className="login-box__header">
           <h1 className="login-box__title"> Sign Up</h1>
@@ -33,19 +34,19 @@ class Registration extends Component{
         </div>
         <div className="login-box__body">
           <form onSubmit={this._handleSubmit}>
-            <input className="in-controls" required name="email" placeholder="Email" onChange={this._handleChange}/>
-            <input className="in-controls" required name="password" type="password" placeholder="password" onChange={this._handleChange}/>
-            <input className="in-controls" required name="fullname" type="name" placeholder="name" onChange={this._handleChange}/>
+            <input className="in-controls" required name="email" placeholder="Email" onChange={this._handleChange} />
+            <input className="in-controls" required name="password" type="password" placeholder="password" onChange={this._handleChange} />
+            <input className="in-controls" required name="fullname" type="name" placeholder="name" onChange={this._handleChange} />
             <select className="in-controls" required name="accountType" onChange={this._handleChange}>
-              {( this.state.accountTypes.map((type) => <option value={type}> {type} </option>))}
+              {(accountTypes.map((type) => <option value={type}> {type} </option>))}
             </select>
 
             <div className="login-box__links">
               <small><Link to="/login"> Login </Link></small> <small><Link to="/"> Back to home</Link></small>
             </div>
 
-            <input className="btn"type="submit" value="Sign Up" onClick={this._handleSubmit} disabled={this.state.loading}/>
-              or
+            <input className="btn" type="submit" value="Sign Up" onClick={this._handleSubmit} disabled={loading} />
+            or
             <button className="btn" type="submit" onClick={this._handleSubmit}> Google </button>
             <button className="btn" type="submit" onClick={this._handleSubmit}> Facebook </button>
             <button className="btn" type="submit" onClick={this._handleSubmit}> Twitter </button>
@@ -64,7 +65,7 @@ class Registration extends Component{
     e.preventDefault()
     this.loadIndicator();
     const { email, password, accountType, fullName } = this.state;
-    if (email && password ) {
+    if (email && password) {
       this.registration(email, password, accountType, fullName);
     } else {
       alert('llene las credenciales');
@@ -81,17 +82,17 @@ class Registration extends Component{
       variables: { email, password, accountType, fullname },
       credentials: 'include'
     })
-    .then(({ data }) => {
-      this.loadIndicator(false);
-      console.log(data)
-      const { email, accountType } = data.registerAccount;
-      alert(`Welcome ${email} you are a ${accountType}`);
-      window.location.href = `${window.location.origin}/company`;
-    })
-    .catch((err) => {
-      alert(err.toString());
-      this.loadIndicator(false);
-    });
+      .then(({ data }) => {
+        this.loadIndicator(false);
+        console.log(data)
+        const { email, accountType } = data.registerAccount;
+        alert(`Welcome ${email} you are a ${accountType}`);
+        window.location.href = `${window.location.origin}/company`;
+      })
+      .catch((err) => {
+        alert(err.toString());
+        this.loadIndicator(false);
+      });
   }
 }
 

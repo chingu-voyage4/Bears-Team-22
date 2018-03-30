@@ -1,14 +1,14 @@
 import React from 'react';
 
 const quote = props => {
-    return(
+    return (
         <article className="home-quote">
-            <img className="home-quote__image" src=""/>
-            <h2 className="home-quote__title"> { props.title ? props.title : 'Jesus Guerrero'} </h2>
+            <img className="home-quote__image" src="" alt='Home Quote' />
+            <h2 className="home-quote__title"> {props.title ? props.title : 'Jesus Guerrero'} </h2>
             {
                 props.showSubtitle && (subTitle(props))
             }
-            
+
             <p>
                 daskdjaskjd laksjd kajsdkljas kdjaklsjd kajsdkljasakslj
                 aslkdjaksjdkasjd klajskdjaksjdkajskjdkajsdkasjkdjkasjkj

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 const routes = [
     {
@@ -23,30 +23,30 @@ const routes = [
         path: '/company/settings',
         exact: true,
         component: () => (<div className="app-routes">
-                             <h1> My Settings </h1>
-                          </div>)
+            <h1> My Settings </h1>
+        </div>)
     },
     {
-      path: '/company/messages',
-      exact: true,
-      component: () => (<div className="app-routes">
-                           <h1> My messages </h1>
-                        </div>)
+        path: '/company/messages',
+        exact: true,
+        component: () => (<div className="app-routes">
+            <h1> My messages </h1>
+        </div>)
     },
 
     {
         path: '/company/posts',
         component: () => (<div className="app-routes">
-                            {/* replace for a component */}
-                            <h1> My Posts </h1>
-                          </div>)
+            {/* replace for a component */}
+            <h1> My Posts </h1>
+        </div>)
     },
     {
         path: '/company/savedCandidates',
         component: () => (<div className="app-routes">
-                            {/* replace for a component */}
-                            <h1> Saved Candidates </h1>
-                          </div>)
+            {/* replace for a component */}
+            <h1> Saved Candidates </h1>
+        </div>)
     }
 
 ]

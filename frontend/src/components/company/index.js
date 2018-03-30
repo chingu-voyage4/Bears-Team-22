@@ -7,11 +7,11 @@ class Company extends Component {
     return (
       <div>
         <Switch>
-          { employerRoutes.map((route, index) =>
+          {employerRoutes.map((route, index) =>
             route.isPrivate ?
-              (<PrivateRoute key={index} exact={route.exact} path={route.path} component={route.component}/>) :
+              (<PrivateRoute key={index} exact={route.exact} path={route.path} component={route.component} />) :
 
-              (<Route key={index} exact={route.exact} path={route.path} component={route.component}/>)
+              (<Route key={index} exact={route.exact} path={route.path} component={route.component} />)
           )}
         </Switch>
       </div>
@@ -23,12 +23,13 @@ export default withRouter(Company);
 
 const PrivateRoute = ({ component: Component, ...attributes }) => (
   <Route {...attributes}
-    render={ props => {
+    render={props => {
       return user.isCompany() ? (
-        <Component {...props}/>
+        <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: "/login", state: { from: props.location } }}/>
-      )}
+          <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+        )
+    }
     }
   />
 );
@@ -36,7 +37,7 @@ const PrivateRoute = ({ component: Component, ...attributes }) => (
 const user = {
   isCompany() {
     console.log(window.currentUser)
-    return (window.currentUser && window.currentUser.accountType == 'company');
+    return (window.currentUser && window.currentUser.accountType === 'company');
   },
 
   isUser() {

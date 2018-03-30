@@ -1,4 +1,4 @@
-const MessageSchema = `
+export default `
     type Message {
         id: String!,
         thread: String,
@@ -24,5 +24,3 @@ const MessageSchema = `
         newMessage: Message!
     }
 `;
-
-export default MessageSchema;

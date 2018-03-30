@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
-import AppHeader from './components/app/AppHeader';
+import AppHeader from './components/appHeader/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
 import './assets/css/App.css';
@@ -39,20 +39,22 @@ class App extends Component {
   }
 
   render() {
-    const { headerClass } = this.state;
-    window.currentUser = this.props.data.currentUser; // pass to redux
+    const { headerClass, headerVisible } = this.state;
+    const { data } = this.props;
+    const { currentUser } = data;
+    window.currentUser = currentUser; // pass to redux
 
     return (
       <div className="App">
-        {this.state.headerVisible && (<AppHeader className={headerClass} />)}
+        {headerVisible && (<AppHeader className={headerClass} />)}
 
         <Switch>
-          { homeRoutes.map((route, index) => (
-            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes}/>
-          )) }
+          {homeRoutes.map((route, index) => (
+            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes} />
+          ))}
         </Switch>
 
-        {this.state.headerVisible && (<AppFooter/>)}
+        {headerVisible && (<AppFooter />)}
       </div>
     );
   }
@@ -60,11 +62,11 @@ class App extends Component {
   // this change the style of the header depending if it's the homepage
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
-    const noHeaderRoutes = ['/login', '/join']
-    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname))}));
+    const noHeaderRoutes = ['/login', '/join'];
+    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname)) }));
   }
 }
 
 export default withRouter(graphql(currentUser, {
   currentUser: ({ data }) => data.currentUser
-})(App))
+})(App));

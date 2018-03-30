@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link } from 'react-router-dom';
@@ -9,14 +9,14 @@ mutation forgotPassword($email: String){
 }
 `;
 
-class ForgotPassword extends Component{
+class ForgotPassword extends Component {
   state = {
     email: '',
     loading: false
   }
 
   render() {
-    return(
+    return (
       <div className="login-box">
         <div className="login-box__header">
           <h1 className="login-box__title"> Reset Password</h1>
@@ -24,13 +24,13 @@ class ForgotPassword extends Component{
         </div>
         <div className="login-box__body">
           <form onSubmit={this._handleSubmit}>
-            <input className="in-controls" name="email" placeholder="Email" onChange={this._handleChange}/>
+            <input className="in-controls" name="email" placeholder="Email" onChange={this._handleChange} />
 
             <div className="login-box__links">
               <small><Link to="/login"> Login </Link></small> <small><Link to="/"> Back to home</Link></small>
             </div>
 
-            <input className="btn"type="submit" value="Get A Link" onClick={this._handleSubmit} disabled={this.state.loading}/>
+            <input className="btn" type="submit" value="Get A Link" onClick={this._handleSubmit} disabled={this.state.loading} />
           </form>
         </div>
       </div>
@@ -63,14 +63,14 @@ class ForgotPassword extends Component{
     this.props.mutate({
       variables: { email }
     })
-    .then(({ data }) => {
-      this.loadIndicator(false)
-      console.log(data)
-    })
-    .catch((err) => {
-      alert(err.toString());
-      this.loadIndicator(false);
-    });
+      .then(({ data }) => {
+        this.loadIndicator(false)
+        console.log(data)
+      })
+      .catch((err) => {
+        alert(err.toString());
+        this.loadIndicator(false);
+      });
   }
 }
 
