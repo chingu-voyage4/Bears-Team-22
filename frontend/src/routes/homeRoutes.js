@@ -5,7 +5,7 @@ import Company from './../components/company';
 import ForgotPassword from './../components/auth/ForgotPassword';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
-import JobAdd from './../components/jobs/JobAdd';
+import JobForm from './../components/jobs/JobForm'
 import Login from './../components/auth/login/Login';
 import Registration from './../components/auth/Registration';
 
@@ -23,7 +23,7 @@ const routes = [
 
     {
         path: '/jobs/add',
-        component: () => (<div className="app-routes"><JobAdd /></div>)
+        component: () => (<div className="app-routes"><JobForm /></div>)
     },
 
     {
