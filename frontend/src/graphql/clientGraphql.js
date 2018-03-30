@@ -6,8 +6,11 @@ import { ApolloClient } from 'apollo-client';
 
 
 const client = new ApolloClient({
-    link: new HttpLink({uri: 'http://localhost:9080/graphql'}),
-    cache: new InMemoryCache()
+    link: new HttpLink({
+        uri: 'http://localhost:9080/graphql',
+        credentials: 'include'
+      }),
+    cache: new InMemoryCache(),
 });
 
 

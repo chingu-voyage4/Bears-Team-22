@@ -5,16 +5,28 @@ import AppHeader from './components/app/AppHeader';
 import AppFooter from './components/appFooter/AppFooter';
 import homeRoutes from './routes/homeRoutes';
 import './assets/css/App.css';
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
+
+const currentUser = gql`
+query currentUser {
+  currentUser {
+    id,
+    email,
+    accountType
+  }
+}
+`
 // todo: pass this to redux?
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headerClass: ''
-    };
-    const { history } = this.props;
+      headerClass: '',
+      headerVisible: true
+    }
 
     // listen route changes to give the correct class to the header
     history.listen(location => {
@@ -22,24 +34,25 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this._checkRoute(window.location.pathname);
+  }
+
   render() {
     const { headerClass } = this.state;
+    window.currentUser = this.props.data.currentUser; // pass to redux
+
     return (
       <div className="App">
-        <AppHeader className={headerClass} />
+        {this.state.headerVisible && (<AppHeader className={headerClass} />)}
 
         <Switch>
           {homeRoutes.map((route, index) => (
-            <Route
-              key={index}
-              exact={route.exact}
-              path={route.path}
-              component={route.component}
-            />
+            <Route key={index} exact={route.exact} path={route.path} component={route.component} routes={route.routes} />
           ))}
         </Switch>
 
-        <AppFooter />
+        {this.state.headerVisible && (<AppFooter />)}
       </div>
     );
   }
@@ -47,12 +60,11 @@ class App extends Component {
   // this change the style of the header depending if it's the homepage
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
-    this.setState({ headerClass: headerClass });
+    const noHeaderRoutes = ['/login', '/join']
+    this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname)) }));
   }
 }
 
-App.propTypes = {
-  history: PropTypes.shape({}).isRequired
-};
-
-export default withRouter(App);
+export default withRouter(graphql(currentUser, {
+  currentUser: ({ data }) => data.currentUser
+})(App))
