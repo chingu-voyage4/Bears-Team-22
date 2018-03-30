@@ -6,7 +6,6 @@ import ForgotPassword from './../components/auth/ForgotPassword';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
 import JobForm from './../components/jobs/JobForm'
-import JobAdd from './../components/jobs/JobAdd';
 import Login from './../components/auth/login/Login';
 import Registration from './../components/auth/Registration';
 
