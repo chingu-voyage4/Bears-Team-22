@@ -4,8 +4,13 @@ const AccountSchema = `
 				email: String!,
 				password: String,
         fullname: String,
-        picture: String,
+				picture: String,
+				livingIn: String,
+				skills: [Skills],
+				languageSkills: [LanguageSkills],
 				social: Social,
+				workExperience: [WorkExperience],
+				education: [Education],
 				accountType: String
         isDeactivated: Boolean,
   			loginToken: String,
@@ -18,6 +23,37 @@ const AccountSchema = `
 			facebook: String,
 			twitter: String,
 			google: String
+		}
+
+		type Skills {
+			name: String,
+			experience: String,
+		}
+
+		type LanguageSkills {
+			name: String,
+			proficiency: String,
+		}
+
+		type WorkExperience { 
+			position: String, 
+			company: String, 
+			location: String, 
+			from: Date, 
+			to: Date, 
+			current: Boolean, 
+			additional: String 
+		}
+
+		type Education { 
+			degree: String, 
+			field: String, 
+			university: String, 
+			location: String, 
+			from: Date, 
+			to: Date, 
+			current: Boolean, 
+			additional: String 
 		}
 
     extend type Query {
