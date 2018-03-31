@@ -23,7 +23,9 @@ const routes = [
     {
         path: '/company/settings',
         exact: true,
-        component: () => <Messages/>
+        component: () => (<div className="app-routes">
+            <h1> My Settings </h1>
+        </div>)
     },
     {
       path: '/company/messages/:threadId?',
@@ -34,17 +36,17 @@ const routes = [
     {
         path: '/company/posts',
         component: () => (<div className="app-routes">
-                            {/* replace for a component */}
-                            <h1> My Posts </h1>
-                          </div>)
+            {/* replace for a component */}
+            <h1> My Posts </h1>
+        </div>)
     },
 
     {
         path: '/company/savedCandidates',
         component: () => (<div className="app-routes">
-                            {/* replace for a component */}
-                            <h1> Saved Candidates </h1>
-                          </div>)
+            {/* replace for a component */}
+            <h1> Saved Candidates </h1>
+        </div>)
     }
 
 ]

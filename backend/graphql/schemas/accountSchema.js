@@ -1,4 +1,4 @@
-const AccountSchema = `
+export default `
     type Account {
 				id: String!
 				email: String!,
@@ -34,4 +34,3 @@ const AccountSchema = `
     }
 `;
 
-export default AccountSchema;

@@ -25,12 +25,14 @@
     "graphql": "^0.13.1",
     "graphql-tools": "^2.21.0",
     "jade": "~1.11.0",
+    "merge-graphql-schemas": "^1.5.1",
     "mongoose": "^5.0.8",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
     "ramda": "^0.25.0",
+    "react-apollo": "^2.1.1",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {

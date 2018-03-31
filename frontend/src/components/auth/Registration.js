@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link , withRouter } from 'react-router-dom';
@@ -15,7 +15,7 @@ mutation registerAccount($email: String, $password: String, $fullname: String, $
 }
 `;
 
-class Registration extends Component{
+class Registration extends Component {
   state = {
     email: '',
     password: '',
@@ -27,7 +27,8 @@ class Registration extends Component{
   }
 
   render() {
-    return(
+    const { accountTypes, loading } = this.state;
+    return (
       <div className="login-box">
         <div className="login-box__header">
           <h1 className="login-box__title"> Sign Up</h1>
@@ -39,7 +40,7 @@ class Registration extends Component{
             <input className="in-controls" required name="password" type="password" placeholder="password" onChange={this._handleChange}/>
             <input className="in-controls" required name="confirmPassword" type="password" placeholder="confirm password" onChange={this._handleChange}/>
             <select className="in-controls" required name="accountType" onChange={this._handleChange}>
-              {( this.state.accountTypes.map((type) => <option value={type}> {type} </option>))}
+              {(accountTypes.map((type) => <option value={type}> {type} </option>))}
             </select>
 
             <div className="login-box__links">

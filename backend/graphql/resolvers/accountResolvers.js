@@ -1,16 +1,16 @@
 import Account from '../../models/Account';
 import passport from './../../services/passport';
 
-const AccountResolvers = {
+export default {
   Query: {
-   async currentUser(parent, args, req) {
+    async currentUser(parent, args, req) {
       console.log(req.session.user)
       return (req.session.user) ? await Account.findById(req.session.user._id) : null
-		},
+    },
 
-		accounts() {
+    accounts() {
       return Account.find(accunts => accounts)
-		}
+    }
   },
 
   Mutation: {
@@ -51,5 +51,4 @@ function saveToSession(user, context) {
   context.session.save();
 }
 
-export default AccountResolvers
 

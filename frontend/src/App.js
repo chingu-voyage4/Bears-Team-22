@@ -42,16 +42,15 @@ class App extends Component {
   }
 
   render() {
-    const { headerClass } = this.state;
+    const { headerClass, headerVisible } = this.state;
     const currentUser = this.props.data.currentUser;
-
     if (currentUser) {
       window.currentUser = currentUser; // pass to redux
     }
 
     return (
       <div className="App">
-        {this.state.headerVisible && (<AppHeader className={headerClass} />)}
+        {headerVisible && (<AppHeader className={headerClass} />)}
 
         <TransitionGroup>
           <CSSTransition classNames="fade" timeout={300}>
@@ -63,7 +62,7 @@ class App extends Component {
           </CSSTransition>
         </TransitionGroup>
 
-        {this.state.headerVisible && (<AppFooter />)}
+        {headerVisible && (<AppFooter />)}
       </div>
     );
   }
@@ -71,7 +70,7 @@ class App extends Component {
   // this change the style of the header depending if it's the homepage
   _checkRoute(pathname) {
     const headerClass = pathname === '/' ? 'home' : '';
-    const noHeaderRoutes = ['/login', '/join']
+    const noHeaderRoutes = ['/login', '/join'];
     window.scrollTo(0, 0);
     this.setState((state) => ({ headerClass: headerClass, headerVisible: !(noHeaderRoutes.includes(pathname)) }));
   }
@@ -79,4 +78,4 @@ class App extends Component {
 
 export default withRouter(graphql(currentUser, {
   currentUser: ({ data }) => data.currentUser
-})(App))
+})(App));
