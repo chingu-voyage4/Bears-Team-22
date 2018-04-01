@@ -1,4 +1,4 @@
-const AccountSchema = `
+export default `
     type Account {
 				id: String!
 				email: String!,
@@ -69,5 +69,3 @@ const AccountSchema = `
       remove: Boolean
     }
 `;
-
-export default AccountSchema;

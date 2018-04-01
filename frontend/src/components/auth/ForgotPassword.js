@@ -1,22 +1,22 @@
-import React, { Component, Fragment } from 'react';
-import { graphql } from "react-apollo";
-import gql from "graphql-tag";
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
 
 const doLogin = gql`
-mutation forgotPassword($email: String){
-  forgotPassword(email: $email)
-}
-`;
+  mutation forgotPassword($email: String) {
+    forgotPassword(email: $email)
+  }
+`
 
-class ForgotPassword extends Component{
+class ForgotPassword extends Component {
   state = {
     email: '',
     loading: false
   }
 
   render() {
-    return(
+    return (
       <div className="login-box">
         <div className="login-box__header">
           <h1 className="login-box__title"> Reset Password</h1>
@@ -24,28 +24,44 @@ class ForgotPassword extends Component{
         </div>
         <div className="login-box__body">
           <form onSubmit={this._handleSubmit}>
-            <input className="in-controls" name="email" placeholder="Email" onChange={this._handleChange}/>
+            <input
+              className="in-controls"
+              name="email"
+              placeholder="Email"
+              onChange={this._handleChange}
+            />
 
             <div className="login-box__links">
-              <small><Link to="/login"> Login </Link></small> <small><Link to="/"> Back to home</Link></small>
+              <small>
+                <Link to="/login"> Login </Link>
+              </small>{' '}
+              <small>
+                <Link to="/"> Back to home</Link>
+              </small>
             </div>
 
-            <input className="btn"type="submit" value="Get A Link" onClick={this._handleSubmit} disabled={this.state.loading}/>
+            <input
+              className="btn"
+              type="submit"
+              value="Get A Link"
+              onClick={this._handleSubmit}
+              disabled={this.state.loading}
+            />
           </form>
         </div>
       </div>
     )
   }
 
-  _handleChange = (e) => {
-    const { name, value } = e.target;
+  _handleChange = e => {
+    const { name, value } = e.target
     this.setState({ [name]: value })
   }
 
-  _handleSubmit = (e) => {
+  _handleSubmit = e => {
     e.preventDefault()
-    this.loadIndicator();
-    const { email } = this.state;
+    this.loadIndicator()
+    const { email } = this.state
 
     if (email) {
       this.forgotPassword(email)
@@ -59,19 +75,20 @@ class ForgotPassword extends Component{
     this.setState({ loading: isLoading })
   }
 
-  forgotPassword = (email) => {
-    this.props.mutate({
-      variables: { email }
-    })
-    .then(({ data }) => {
-      this.loadIndicator(false)
-      console.log(data)
-    })
-    .catch((err) => {
-      alert(err.toString());
-      this.loadIndicator(false);
-    });
+  forgotPassword = email => {
+    this.props
+      .mutate({
+        variables: { email }
+      })
+      .then(({ data }) => {
+        this.loadIndicator(false)
+        console.log(data)
+      })
+      .catch(err => {
+        alert(err.toString())
+        this.loadIndicator(false)
+      })
   }
 }
 
-export default graphql(doLogin)(ForgotPassword);
+export default graphql(doLogin)(ForgotPassword)

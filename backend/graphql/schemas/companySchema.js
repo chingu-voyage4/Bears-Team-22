@@ -1,4 +1,4 @@
-const companySchema = `
+export default `
 extend type Query {
     companies: [Company],
     companyById(_id: Int!): Company,
@@ -7,6 +7,4 @@ extend type Query {
 type Company {
     _id: Int,
     companyName: String
-}`
-
-export default companySchema
+}`;

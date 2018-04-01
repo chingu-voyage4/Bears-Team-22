@@ -1,8 +1,5 @@
-const jobSchema = ` 
-extend type Query {
-  jobs: [Job],
-  job(id: Int!): Job
-}
+export default ` 
+
   type Job {    
       id: Int,
       positionName: String,
@@ -14,6 +11,8 @@ extend type Query {
       jobDescription: String
             
   }
+   type Query {
+  jobs: [Job],
+  job(id: Int!): Job
+}
 `;
-
-export default jobSchema;
