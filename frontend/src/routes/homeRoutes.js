@@ -1,7 +1,9 @@
 import React from 'react';
 // import { withRouter } from 'react-router-dom';
 import employerRoutes from './employerRoutes';
+import employeeRoutes from './employeeRoutes';
 import Company from './../components/company';
+import Employee from './../components/employee';
 import ForgotPassword from './../components/auth/ForgotPassword';
 import HomePage from './../components/homepage/Home';
 import Jobs from './../components/jobs/Jobs';
@@ -62,10 +64,10 @@ const routes = [
     path: '/employee',
     component: () => (
       <div className="app-routes">
-        {/* replace for a component */}
-        <h1> employee stuff here </h1>
+        <Employee />
       </div>
-    )
+    ),
+    routes: employeeRoutes
   },
 
   {
