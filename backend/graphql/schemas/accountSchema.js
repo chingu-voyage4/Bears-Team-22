@@ -39,8 +39,8 @@ const AccountSchema = `
 			position: String, 
 			company: String, 
 			location: String, 
-			from: Date, 
-			to: Date, 
+			from: String, 
+			to: String, 
 			current: Boolean, 
 			additional: String 
 		}
@@ -50,8 +50,8 @@ const AccountSchema = `
 			field: String, 
 			university: String, 
 			location: String, 
-			from: Date, 
-			to: Date, 
+			from: String, 
+			to: String, 
 			current: Boolean, 
 			additional: String 
 		}
